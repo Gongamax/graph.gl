@@ -1,7 +1,7 @@
 # Graph.gl
 
 [![CI](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml/badge.svg)](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml)
-[![npm version](https://badge.fury.io/js/@gongamax%2Fgraph.gl.svg)](https://www.npmjs.com/package/@gongamax/graph.gl)
+[![npm version](https://badge.fury.io/js/@frutuoso%2Fgraph.gl.svg)](https://www.npmjs.com/package/@frutuoso/graph.gl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
@@ -26,7 +26,7 @@ A React component library for visualizing large graphs with customizable layouts
 ## 🚀 Installation
 
 ```bash
-npm install @gongamax/graph.gl
+npm install @frutuoso/graph.gl
 ```
 
 ### Peer Dependencies
@@ -42,7 +42,7 @@ npm install @luma.gl/core@^9.0.0 @luma.gl/engine@^9.0.0 @loaders.gl/core@^4.0.0
 Or with yarn:
 
 ```bash
-yarn add @gongamax/graph.gl
+yarn add @frutuoso/graph.gl
 yarn add react@^18.0.0 react-dom@^18.0.0
 yarn add @deck.gl/core@^9.0.0 @deck.gl/layers@^9.0.0 @deck.gl/react@^9.0.0
 yarn add @luma.gl/core@^9.0.0 @luma.gl/engine@^9.0.0 @loaders.gl/core@^4.0.0
@@ -56,7 +56,7 @@ import GraphGL, {
   JSONLoader,
   NODE_TYPE,
   D3ForceLayout
-} from '@gongamax/graph.gl';
+} from '@frutuoso/graph.gl';
 
 const MyGraph = ({data}) => {
   const graph = JSONLoader({
