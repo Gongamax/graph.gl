@@ -25,11 +25,11 @@ var fs = require('fs'),
 // Get all images in the input path
 const fileNames = fs
   .readdirSync(INPUT_DIR)
-  .filter(name => IMAGE_PATTERN.test(name));
+  .filter((name) => IMAGE_PATTERN.test(name));
 
 Promise.all(
-  fileNames.map(name => readImage(path.resolve(INPUT_DIR, name)))
-).then(images => {
+  fileNames.map((name) => readImage(path.resolve(INPUT_DIR, name)))
+).then((images) => {
   // Images are loaded
   const nodes = images.map((pixels, index) => ({
     name: fileNames[index],
@@ -45,7 +45,7 @@ Promise.all(
   // Convert to texture atlas
   const outputJSON = {};
   const outputImage = createImage(result.width, result.height);
-  result.items.forEach(item => {
+  result.items.forEach((item) => {
     outputJSON[item.item.name.replace(IMAGE_PATTERN, '')] = {
       x: item.x,
       y: item.y,
@@ -115,8 +115,8 @@ function exportJSFile(filePath, contentStr) {
 }
 
 function readImage(filePath) {
-  return new Promise(function(resolve, reject) {
-    getPixels(filePath, function(err, pixels) {
+  return new Promise(function (resolve, reject) {
+    getPixels(filePath, function (err, pixels) {
       if (err) {
         resolve(null);
       } else {

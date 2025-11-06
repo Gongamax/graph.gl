@@ -10,9 +10,9 @@ function generateGraph({
   points,
   width,
   height,
-  xAccessor = d => d.x,
-  yAccessor = d => d.y,
-  idAccessor = d => d.id,
+  xAccessor = (d) => d.x,
+  yAccessor = (d) => d.y,
+  idAccessor = (d) => d.id,
 }) {
   if (!points || !Array.isArray(points) || points.length === 0) {
     return null;
@@ -20,13 +20,10 @@ function generateGraph({
 
   let edgeCount = 0;
 
-  const links = voronoi()
-    .x(xAccessor)
-    .y(yAccessor)
-    .links(points);
+  const links = voronoi().x(xAccessor).y(yAccessor).links(points);
 
   // expand the graph to screen size
-  const originalNodes = points.map(node => ({
+  const originalNodes = points.map((node) => ({
     ...node,
     id: idAccessor(node),
     visible: false,
@@ -38,14 +35,14 @@ function generateGraph({
     y: node.y * height,
   }));
 
-  const originalEdges = links.map(link => ({
+  const originalEdges = links.map((link) => ({
     id: edgeCount++,
     sourceId: idAccessor(link.source),
     targetId: idAccessor(link.target),
     visible: false,
   }));
 
-  const fakeNodes = points.map(node => ({
+  const fakeNodes = points.map((node) => ({
     ...node,
     id: idAccessor(node) + '-visible',
     // only fake nodes has collision detection
@@ -54,13 +51,13 @@ function generateGraph({
     locked: false,
   }));
 
-  const fakeEdges = points.map(node => ({
+  const fakeEdges = points.map((node) => ({
     id: edgeCount++,
     sourceId: idAccessor(node),
     targetId: idAccessor(node) + '-visible',
     visible: true,
   }));
-  const Identity = c => c;
+  const Identity = (c) => c;
   const graph = createGraph({
     name: 'voronoi-graph',
     nodes: originalNodes.concat(fakeNodes),
@@ -85,10 +82,8 @@ class BubbleChartExample extends React.Component {
       height: 800,
     });
     this.setState({graph});
-    const valueExtent = extent(FeatureData, n => n.value);
-    this._nodeSizeScale = scaleLinear()
-      .range([5, 15])
-      .domain(valueExtent);
+    const valueExtent = extent(FeatureData, (n) => n.value);
+    this._nodeSizeScale = scaleLinear().range([5, 15]).domain(valueExtent);
   }
 
   render() {
@@ -109,13 +104,13 @@ class BubbleChartExample extends React.Component {
         nodeStyle={[
           {
             type: NODE_TYPE.MARKER,
-            size: d => {
+            size: (d) => {
               if (!d.getPropertyValue('visible')) {
                 return 5;
               }
               return this._nodeSizeScale(d.getPropertyValue('value'));
             },
-            fill: d => {
+            fill: (d) => {
               return d.getPropertyValue('visible')
                 ? 'red'
                 : `rgba(0, 0, 255, ${opacity})`;
@@ -125,8 +120,9 @@ class BubbleChartExample extends React.Component {
           },
           {
             type: NODE_TYPE.LABEL,
-            text: node => node.getId(),
-            color: d => (d.getPropertyValue('visible') ? 'red' : 'transparent'),
+            text: (node) => node.getId(),
+            color: (d) =>
+              d.getPropertyValue('visible') ? 'red' : 'transparent',
             fontSize: 3,
             offset: [0, 1],
             scaleWithZoom: true,
@@ -135,7 +131,7 @@ class BubbleChartExample extends React.Component {
         enableDragging
         resumeLayoutAfterDragging
         edgeStyle={{
-          stroke: d =>
+          stroke: (d) =>
             d.getPropertyValue('visible')
               ? `rgba(255, 0, 0, ${opacity})`
               : `rgba(0, 0, 255, ${opacity})`,

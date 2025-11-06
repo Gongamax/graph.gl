@@ -26,8 +26,8 @@ export default class HivePlotExample extends Component {
       }, {});
       const graph = JSONLoader({
         json: sampleGraph,
-        nodeParser: node => ({id: node.name}),
-        edgeParser: edge => ({
+        nodeParser: (node) => ({id: node.name}),
+        edgeParser: (edge) => ({
           id: `${edge.source}-${edge.target}`,
           sourceId: nodeIndexMap[edge.source],
           targetId: nodeIndexMap[edge.target],
@@ -35,13 +35,13 @@ export default class HivePlotExample extends Component {
         }),
       });
       this.setState({graph});
-      const groupExtent = extent(nodes, n => n.group);
+      const groupExtent = extent(nodes, (n) => n.group);
       this._nodeColorScale = scaleOrdinal(schemeAccent).domain(groupExtent);
     });
   }
 
   // node accessors
-  getNodeColor = node => {
+  getNodeColor = (node) => {
     const hex = this._nodeColorScale(node.getPropertyValue('group'));
     return Color(hex).array();
   };
@@ -57,7 +57,7 @@ export default class HivePlotExample extends Component {
           new HivePlot({
             innerRadius: DEFAULT_WIDTH * 0.05,
             outerRadius: DEFAULT_WIDTH * 0.3,
-            getNodeAxis: node => node.getPropertyValue('group'),
+            getNodeAxis: (node) => node.getPropertyValue('group'),
           })
         }
         nodeStyle={[

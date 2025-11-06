@@ -22,9 +22,9 @@ export default class CurvedEdge extends CompositeLayer {
           this.getSubLayerProps({
             id: '__control-points',
             data,
-            getPosition: e => getLayoutInfo(e).controlPoints[0],
-            getColor: d => [190, 190, 190, 150],
-            getRadius: d => 5,
+            getPosition: (e) => getLayoutInfo(e).controlPoints[0],
+            getColor: (d) => [190, 190, 190, 150],
+            getRadius: (d) => 5,
             updateTriggers: {
               getPosition: positionUpdateTrigger,
             },
@@ -36,9 +36,9 @@ export default class CurvedEdge extends CompositeLayer {
           this.getSubLayerProps({
             id: '__first_segment',
             data,
-            getSourcePosition: e => getLayoutInfo(e).sourcePosition,
-            getTargetPosition: e => getLayoutInfo(e).controlPoints[0],
-            getColor: e => [210, 210, 210, 150],
+            getSourcePosition: (e) => getLayoutInfo(e).sourcePosition,
+            getTargetPosition: (e) => getLayoutInfo(e).controlPoints[0],
+            getColor: (e) => [210, 210, 210, 150],
             updateTriggers: {
               getSourcePosition: positionUpdateTrigger,
               getTargetPosition: positionUpdateTrigger,
@@ -51,9 +51,9 @@ export default class CurvedEdge extends CompositeLayer {
           this.getSubLayerProps({
             id: '__last_segment',
             data,
-            getSourcePosition: e => getLayoutInfo(e).controlPoints[0],
-            getTargetPosition: e => getLayoutInfo(e).targetPosition,
-            getColor: e => [210, 210, 210, 150],
+            getSourcePosition: (e) => getLayoutInfo(e).controlPoints[0],
+            getTargetPosition: (e) => getLayoutInfo(e).targetPosition,
+            getColor: (e) => [210, 210, 210, 150],
             updateTriggers: {
               getSourcePosition: positionUpdateTrigger,
               getTargetPosition: positionUpdateTrigger,
@@ -65,9 +65,9 @@ export default class CurvedEdge extends CompositeLayer {
         this.getSubLayerProps({
           id: '__spline_layer',
           data,
-          getSourcePosition: e => getLayoutInfo(e).sourcePosition,
-          getTargetPosition: e => getLayoutInfo(e).targetPosition,
-          getControlPoints: e => getLayoutInfo(e).controlPoints,
+          getSourcePosition: (e) => getLayoutInfo(e).sourcePosition,
+          getTargetPosition: (e) => getLayoutInfo(e).targetPosition,
+          getControlPoints: (e) => getLayoutInfo(e).controlPoints,
           updateTriggers: {
             getSourcePosition: positionUpdateTrigger,
             getTargetPosition: positionUpdateTrigger,

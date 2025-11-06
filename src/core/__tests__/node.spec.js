@@ -3,7 +3,7 @@ import SAMPLE_NODE from './__fixtures__/edge.json';
 import Node from '../node';
 import Edge from '../edge';
 
-const createEdges = edges => edges.map(e => new Edge(e));
+const createEdges = (edges) => edges.map((e) => new Edge(e));
 
 describe('core/node', () => {
   it('should work for non-directed', () => {

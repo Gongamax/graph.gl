@@ -14,7 +14,7 @@ export default function createGraph({
   graph.setGraphName(graphName);
 
   // add nodes
-  const glNodes = nodes.map(node => {
+  const glNodes = nodes.map((node) => {
     const {id} = nodeParser(node);
     return new Node({
       id,
@@ -23,7 +23,7 @@ export default function createGraph({
   });
   graph.batchAddNodes(glNodes);
 
-  const glEdges = edges.map(edge => {
+  const glEdges = edges.map((edge) => {
     const {id, sourceId, targetId, directed} = edgeParser(edge);
     return new Edge({
       id,

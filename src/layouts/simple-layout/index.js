@@ -2,7 +2,7 @@ import BaseLayout from '../../core/base-layout';
 import {EDGE_TYPE} from '../../index';
 
 const defaultOptions = {
-  nodePositionAccessor: node => [
+  nodePositionAccessor: (node) => [
     node.getPropertyValue('x'),
     node.getPropertyValue('y'),
   ],
@@ -49,13 +49,13 @@ export default class SimpleLayout extends BaseLayout {
     }, {});
   }
 
-  setNodePositionAccessor = accessor => {
+  setNodePositionAccessor = (accessor) => {
     this._options.nodePositionAccessor = accessor;
   };
 
-  getNodePosition = node => this._nodePositionMap[node.getId()];
+  getNodePosition = (node) => this._nodePositionMap[node.getId()];
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const sourcePos = this._nodePositionMap[edge.getSourceNodeId()];
     const targetPos = this._nodePositionMap[edge.getTargetNodeId()];
     return {

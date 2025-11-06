@@ -14,7 +14,7 @@ describe('core/graph', () => {
   it('should add edges in a batch', () => {
     const graph = new Graph();
     const glEdges = SAMPLE_GRAPH1.edges.map(
-      e =>
+      (e) =>
         new Edge({
           id: e.id,
           sourceId: e.sourceId,
@@ -32,7 +32,7 @@ describe('core/graph', () => {
   it('should add nodes in a batch', () => {
     const graph = new Graph();
     const glNodes = SAMPLE_GRAPH1.nodes.map(
-      n => new Node({id: n.id, data: {}})
+      (n) => new Node({id: n.id, data: {}})
     );
     graph.batchAddNodes(glNodes);
     expect(graph.getNodes()).toHaveLength(glNodes.length);
@@ -43,7 +43,7 @@ describe('core/graph', () => {
   it('should find nodes and edges and do basic sanity tests', () => {
     const graph = new Graph();
     const glEdges = SAMPLE_GRAPH1.edges.map(
-      e =>
+      (e) =>
         new Edge({
           id: e.id,
           sourceId: e.sourceId,
@@ -53,7 +53,7 @@ describe('core/graph', () => {
         })
     );
     const glNodes = SAMPLE_GRAPH1.nodes.map(
-      n => new Node({id: n.id, data: {}})
+      (n) => new Node({id: n.id, data: {}})
     );
     graph.batchAddNodes(glNodes);
     graph.batchAddEdges(glEdges);
@@ -71,13 +71,13 @@ describe('core/graph', () => {
     const connectedEdges = graph.getConnectedEdges('Cosette');
 
     expect(['2', '5']).toEqual(
-      expect.arrayContaining(connectedEdges.map(e => e.getId()))
+      expect.arrayContaining(connectedEdges.map((e) => e.getId()))
     );
 
     // getNodeSiblings
     const siblings = graph.getNodeSiblings('Cosette');
     expect(['Thenardier', 'Javert']).toEqual(
-      expect.arrayContaining(siblings.map(n => n.getId()))
+      expect.arrayContaining(siblings.map((n) => n.getId()))
     );
 
     // getDegree

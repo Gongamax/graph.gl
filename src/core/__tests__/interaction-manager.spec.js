@@ -20,28 +20,27 @@ function generateIMProps(extraProps = {}) {
     },
     engine,
     enableDragging: true,
-    resumeLayoutAfterDragging: true
+    resumeLayoutAfterDragging: true,
   };
   return {
     props: {
       ...props,
-      ...extraProps
+      ...extraProps,
     },
-    notifyCallback: jest.fn()
+    notifyCallback: jest.fn(),
   };
 }
 
 describe('core/interaction-manager', () => {
-
   it('click a node', () => {
     const {props, notifyCallback} = generateIMProps();
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {isNode: true},
+      object: {isNode: true},
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     im.onClick(clickedObj);
     expect(props.nodeEvents.onClick.mock.calls.length).toBe(1);
   });
@@ -50,11 +49,11 @@ describe('core/interaction-manager', () => {
     const {props, notifyCallback} = generateIMProps();
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {isEdge: true},
+      object: {isEdge: true},
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     im.onClick(clickedObj);
     expect(props.edgeEvents.onClick.mock.calls.length).toBe(1);
   });
@@ -63,14 +62,14 @@ describe('core/interaction-manager', () => {
     const {props, notifyCallback} = generateIMProps();
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {
+      object: {
         isNode: true,
-        setState: jest.fn()
+        setState: jest.fn(),
       },
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     // hover the node
     im.onHover(clickedObj);
     expect(props.nodeEvents.onMouseEnter.mock.calls.length).toBe(1);
@@ -89,16 +88,16 @@ describe('core/interaction-manager', () => {
     const {props, notifyCallback} = generateIMProps();
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {
+      object: {
         isNode: true,
-        setState: jest.fn()
+        setState: jest.fn(),
       },
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     const event = {
-      stopImmediatePropagation: jest.fn()
+      stopImmediatePropagation: jest.fn(),
     };
     // start dragging the node
     im.onDragStart(clickedObj, event);
@@ -119,20 +118,20 @@ describe('core/interaction-manager', () => {
 
   it('test dragging a node when enableDragging = false & resumeLayoutAfterDragging = true', () => {
     const {props, notifyCallback} = generateIMProps({
-      enableDragging: false
+      enableDragging: false,
     });
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {
+      object: {
         isNode: true,
-        setState: jest.fn()
+        setState: jest.fn(),
       },
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     const event = {
-      stopImmediatePropagation: jest.fn()
+      stopImmediatePropagation: jest.fn(),
     };
     // start dragging the node
     im.onDragStart(clickedObj, event);
@@ -154,20 +153,20 @@ describe('core/interaction-manager', () => {
   it('test dragging a node when enableDragging = true & resumeLayoutAfterDragging = false', () => {
     const {props, notifyCallback} = generateIMProps({
       enableDragging: true,
-      resumeLayoutAfterDragging: false
+      resumeLayoutAfterDragging: false,
     });
     const im = new InteractionManager(props, notifyCallback);
     const clickedObj = {
-      object:  {
+      object: {
         isNode: true,
-        setState: jest.fn()
+        setState: jest.fn(),
       },
       x: 1,
       y: 1,
-      coordinate:  [10, 10]
-    }
+      coordinate: [10, 10],
+    };
     const event = {
-      stopImmediatePropagation: jest.fn()
+      stopImmediatePropagation: jest.fn(),
     };
     // start dragging the node
     im.onDragStart(clickedObj, event);
@@ -185,5 +184,4 @@ describe('core/interaction-manager', () => {
     expect(clickedObj.object.setState.mock.calls.length).toBe(2);
     expect(props.engine.unlockNodePosition.mock.calls.length).toBe(1);
   });
-
 });

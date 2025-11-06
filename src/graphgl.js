@@ -155,7 +155,7 @@ export default class GraphGL extends PureComponent {
     this._setProps(nextProps);
   }
 
-  _setProps = props => {
+  _setProps = (props) => {
     const {graph, layout} = props;
 
     // set graph
@@ -204,7 +204,7 @@ export default class GraphGL extends PureComponent {
     });
 
   // Relatively zoom the graph by a delta zoom level
-  zoomBy = deltaZoom => {
+  zoomBy = (deltaZoom) => {
     const {minZoom, maxZoom} = this.props;
     const newZoom = this.state.viewState.zoom + deltaZoom;
     this.setState({
@@ -221,10 +221,10 @@ export default class GraphGL extends PureComponent {
     const data = this._engine.getGraph().getNodes();
 
     // get the projected position of all nodes
-    const positions = data.map(d => this._engine.getNodePosition(d));
+    const positions = data.map((d) => this._engine.getNodePosition(d));
     // get the value range of x and y
-    const xExtent = extent(positions, d => d[0]);
-    const yExtent = extent(positions, d => d[1]);
+    const xExtent = extent(positions, (d) => d[0]);
+    const yExtent = extent(positions, (d) => d[1]);
     const newTarget = [
       (xExtent[0] + xExtent[1]) / 2,
       (yExtent[0] + yExtent[1]) / 2,
@@ -275,7 +275,7 @@ export default class GraphGL extends PureComponent {
         <DeckGL
           width="100%"
           height="100%"
-          ref={ref => {
+          ref={(ref) => {
             this._deckRef = ref;
           }}
           getCursor={() => DEFAULT_CURSOR}

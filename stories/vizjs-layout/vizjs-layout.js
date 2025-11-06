@@ -52,9 +52,9 @@ export default class VizJSLayout extends BaseLayout {
       arrowhead: 'none',
       arrowtail: 'none',
     };
-    const serializeSetting = setting =>
+    const serializeSetting = (setting) =>
       Object.entries(setting)
-        .map(p => p.join('='))
+        .map((p) => p.join('='))
         .join(', ');
     return [
       `graph[${serializeSetting(graphSetting)}]`,
@@ -65,7 +65,7 @@ export default class VizJSLayout extends BaseLayout {
 
   _buildDotEdges(edges) {
     return edges.map(
-      e => `"${e.getSourceNodeId()}" -- "${e.getTargetNodeId()}"`
+      (e) => `"${e.getSourceNodeId()}" -- "${e.getTargetNodeId()}"`
     );
   }
 
@@ -93,7 +93,7 @@ export default class VizJSLayout extends BaseLayout {
     }, {});
     // build a special edge map [source-target] = edge
     this._edgeEndPointsMap = {};
-    graph.getEdges().forEach(e => {
+    graph.getEdges().forEach((e) => {
       this._edgeEndPointsMap[
         `"${e.getSourceNodeId()}" -- "${e.getTargetNodeId()}"`
       ] = e.id;
@@ -121,33 +121,35 @@ export default class VizJSLayout extends BaseLayout {
   start() {
     this._viz
       .renderString(this._dotGraph, {format: 'json', ...this._options})
-      .then(string => {
+      .then((string) => {
         const result = JSON.parse(string);
         const {objects} = result;
-        objects.forEach(obj => {
-          this._nodeMap[obj.name] = obj.pos.split(',').map(v => parseFloat(v));
+        objects.forEach((obj) => {
+          this._nodeMap[obj.name] = obj.pos
+            .split(',')
+            .map((v) => parseFloat(v));
         });
 
         // Flip the entire graph vertically
         // and shift to the center
-        const xExtent = extent(Object.values(this._nodeMap), p => p[0]);
-        const yExtent = extent(Object.values(this._nodeMap), p => p[1]);
+        const xExtent = extent(Object.values(this._nodeMap), (p) => p[0]);
+        const yExtent = extent(Object.values(this._nodeMap), (p) => p[1]);
         const center = [
           (xExtent[0] + xExtent[1]) / 2,
           (yExtent[0] + yExtent[1]) / 2,
         ];
-        Object.keys(this._nodeMap).forEach(k => {
+        Object.keys(this._nodeMap).forEach((k) => {
           const oldPos = this._nodeMap[k];
           this._nodeMap[k] = [oldPos[0] - center[0], -oldPos[1] + center[1]];
         });
 
         const {edges} = result;
-        edges.forEach(e => {
+        edges.forEach((e) => {
           // e. head tail
           const {head, tail, _draw_} = e;
           const edgeId = this._getEdgeIdFromEndPoints(tail, head);
-          const points = _draw_.find(d => d.op === 'b').points;
-          this._edgeMap[edgeId] = points.map(p => [
+          const points = _draw_.find((d) => d.op === 'b').points;
+          this._edgeMap[edgeId] = points.map((p) => [
             p[0] - center[0],
             -p[1] + center[1],
           ]);
@@ -160,7 +162,7 @@ export default class VizJSLayout extends BaseLayout {
     this.initializeGraph(graph);
   }
 
-  getNodePosition = node => {
+  getNodePosition = (node) => {
     const nodePos = this._nodeMap[node.id];
     if (nodePos) {
       return nodePos;
@@ -168,7 +170,7 @@ export default class VizJSLayout extends BaseLayout {
     return [0, 0];
   };
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const sourcePosition = this._nodeMap[edge.getSourceNodeId()];
     const targetPosition = this._nodeMap[edge.getTargetNodeId()];
     if (sourcePosition && targetPosition) {

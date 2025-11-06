@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {cleanup, fireEvent, render} from 'react-testing-library';
+import {cleanup, fireEvent, render} from '@testing-library/react';
 import ViewControl from '../view-control';
 
 // NOTE: this line is important! It will cleanup the jsdom properly.
@@ -8,7 +8,7 @@ afterEach(cleanup);
 describe('ViewControl', () => {
   it('should pass sanity check for pan buttons presence', () => {
     const {getByText} = render(<ViewControl zoomLevel={2} />);
-    ['▲', '◀', '▶', '▼'].forEach(unicodeSymbol => {
+    ['▲', '◀', '▶', '▼'].forEach((unicodeSymbol) => {
       expect(getByText(unicodeSymbol)).toBeTruthy();
     });
   });

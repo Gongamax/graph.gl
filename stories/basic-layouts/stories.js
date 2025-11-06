@@ -21,7 +21,7 @@ import D3Doc from '../../docs/api-reference/d3-layout.md';
 stories.add(
   'Simple',
   () => {
-    const graphLoader = data => JSONLoader({json: data});
+    const graphLoader = (data) => JSONLoader({json: data});
     const WithDataGraphGL = FetchS3GraphHOC(
       'pre-layout-graph.json',
       graphLoader

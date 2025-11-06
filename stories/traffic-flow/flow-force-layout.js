@@ -2,7 +2,7 @@ import {BaseLayout, EDGE_TYPE} from 'graph.gl';
 import {mean} from 'd3-array';
 
 const defaultOptions = {
-  nodePositionAccessor: node => [
+  nodePositionAccessor: (node) => [
     node.getPropertyValue('x'),
     node.getPropertyValue('y'),
   ],
@@ -55,7 +55,7 @@ export default class FlowForceLayout extends BaseLayout {
       // return res;
 
       // get all connected edges, and calculate the speed vector for each
-      const speedVectors = node.getConnectedEdges().map(e => {
+      const speedVectors = node.getConnectedEdges().map((e) => {
         const fromSource = e.getSourceNodeId() === sourceNodeId;
         const targetNodeId = fromSource
           ? e.getTargetNodeId()
@@ -80,8 +80,8 @@ export default class FlowForceLayout extends BaseLayout {
       });
 
       const avgVector = [
-        mean(speedVectors, d => d[0]) || 0,
-        mean(speedVectors, d => d[1]) || 0,
+        mean(speedVectors, (d) => d[0]) || 0,
+        mean(speedVectors, (d) => d[1]) || 0,
       ];
       res[sourceNodeId] = [
         sourcePos[0] + this._options.offsetScalar * avgVector[0],
@@ -91,13 +91,13 @@ export default class FlowForceLayout extends BaseLayout {
     }, {});
   }
 
-  setNodePositionAccessor = accessor => {
+  setNodePositionAccessor = (accessor) => {
     this._options.nodePositionAccessor = accessor;
   };
 
-  getNodePosition = node => this._nodePositionMap[node.getId()];
+  getNodePosition = (node) => this._nodePositionMap[node.getId()];
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const sourcePos = this._nodePositionMap[edge.getSourceNodeId()];
     const targetPos = this._nodePositionMap[edge.getTargetNodeId()];
     return {

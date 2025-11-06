@@ -38,7 +38,7 @@ stories
           decorators: [
             {
               type: EDGE_DECORATOR_TYPE.LABEL,
-              text: edge => edge.id,
+              text: (edge) => edge.id,
               color: '#000',
               fontSize: 18,
             },

@@ -92,7 +92,7 @@ stories.add(
 );
 
 // get the markers 'xxx-filled'
-const markerList = Object.values(MARKER_TYPE).filter(name =>
+const markerList = Object.values(MARKER_TYPE).filter((name) =>
   name.includes('-filled')
 );
 const markerLength = markerList.length;
@@ -104,7 +104,7 @@ stories.add(
       nodeStyle={[
         {
           type: NODE_TYPE.MARKER,
-          marker: node => markerList[node.id % markerLength],
+          marker: (node) => markerList[node.id % markerLength],
           fill: DEFAULT_COLOR,
           size: 30,
         },
@@ -127,13 +127,13 @@ stories.add(
         },
         {
           type: NODE_TYPE.MARKER,
-          marker: node => markerList[node.id % markerLength],
+          marker: (node) => markerList[node.id % markerLength],
           fill: 'white',
           size: 20,
         },
         {
           type: NODE_TYPE.LABEL,
-          text: node => markerList[node.id % markerLength],
+          text: (node) => markerList[node.id % markerLength],
           color: DEFAULT_COLOR,
           fontSize: 10,
           offset: [0, 15],

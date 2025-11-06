@@ -3,7 +3,7 @@ import {BaseLayout, EDGE_TYPE} from '../../src';
 const defaultOptions = {
   innerRadius: 100,
   outerRadius: 500,
-  getNodeAxis: node => node.getPropertyValue('group'),
+  getNodeAxis: (node) => node.getPropertyValue('group'),
 };
 
 const computeControlPoint = ({
@@ -20,7 +20,7 @@ const computeControlPoint = ({
     (sourceNodeAxis > halfAxis && targetNodeAxis > halfAxis);
   // curve direction
   const direction =
-    sameSide && (sourceNodeAxis <= halfAxis && targetNodeAxis <= halfAxis)
+    sameSide && sourceNodeAxis <= halfAxis && targetNodeAxis <= halfAxis
       ? 1
       : -1;
 
@@ -127,9 +127,9 @@ export default class HivePlot extends BaseLayout {
     this._callbacks.onLayoutDone();
   }
 
-  getNodePosition = node => this._nodePositionMap[node.getId()];
+  getNodePosition = (node) => this._nodePositionMap[node.getId()];
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const {getNodeAxis} = this._options;
     const sourceNodeId = edge.getSourceNodeId();
     const targetNodeId = edge.getTargetNodeId();

@@ -17,7 +17,7 @@ export default class EdgeLayer extends CompositeLayer {
   static defautlProps = {
     data: [],
     pickable: true,
-    getLayoutInfo: d => ({
+    getLayoutInfo: (d) => ({
       type: d.type,
       sourcePosition: d.sourcePosition,
       targetPosition: d.targetPosition,
@@ -52,17 +52,13 @@ export default class EdgeLayer extends CompositeLayer {
   }
 
   renderLayers() {
-    const {
-      getLayoutInfo,
-      pickable,
-      positionUpdateTrigger,
-      stylesheet,
-    } = this.props;
+    const {getLayoutInfo, pickable, positionUpdateTrigger, stylesheet} =
+      this.props;
 
     const {typedEdgeData} = this.state;
 
     // render lines by types (straight line, path, curves)
-    return Object.entries(typedEdgeData).map(e => {
+    return Object.entries(typedEdgeData).map((e) => {
       const [type, edgeData] = e;
       const Layer = EDGE_LAYER_MAP[type];
       // invalid edge layer type
@@ -74,15 +70,13 @@ export default class EdgeLayer extends CompositeLayer {
         getLayoutInfo,
         getColor: stylesheet.getDeckGLAccessor('getColor'),
         getWidth: stylesheet.getDeckGLAccessor('getWidth'),
-        colorUpdateTrigger: stylesheet.getDeckGLAccessorUpdateTrigger(
-          'getColor'
-        ),
-        widthUpdateTrigger: stylesheet.getDeckGLAccessorUpdateTrigger(
-          'getWidth'
-        ),
+        colorUpdateTrigger:
+          stylesheet.getDeckGLAccessorUpdateTrigger('getColor'),
+        widthUpdateTrigger:
+          stylesheet.getDeckGLAccessorUpdateTrigger('getWidth'),
         positionUpdateTrigger,
         pickable,
-        coordinateSystem: COORDINATE_SYSTEM.IDENTITY,
+        coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
         parameters: {
           depthTest: false,
         },

@@ -97,11 +97,11 @@ export default class Node {
    */
   getPropertyValue(key) {
     // try to search the key within this object
-    if (this.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this, key)) {
       return this[key];
     }
     // try to search the key in the original data reference
-    else if (this._data.hasOwnProperty(key)) {
+    else if (Object.prototype.hasOwnProperty.call(this._data, key)) {
       return this._data[key];
     }
     // otherwise, not found
@@ -154,7 +154,7 @@ export default class Node {
    */
   removeConnectedEdges(edge) {
     const iterableEdges = Array.isArray(edge) ? edge : [edge];
-    iterableEdges.forEach(e => {
+    iterableEdges.forEach((e) => {
       delete this._connectedEdges[e.id];
     });
   }

@@ -84,12 +84,12 @@ export default class NGraphLayout extends BaseLayout {
   initializeGraph(graph) {
     this._ngraph.clear();
     // add new nodes
-    graph.getNodes().forEach(node => {
+    graph.getNodes().forEach((node) => {
       this._ngraph.addNode(node.getId());
       // set to origin
       // this._simulator.setNodePosition(node.getId(), 0, 0);
     });
-    graph.getEdges().forEach(edge => {
+    graph.getEdges().forEach((edge) => {
       this._ngraph.addLink(
         edge.getSourceNodeId(),
         edge.getTargetNodeId(),
@@ -101,14 +101,14 @@ export default class NGraphLayout extends BaseLayout {
   updateGraph(graph) {
     const _ngraph = this._ngraph;
     // remove non-exist node
-    _ngraph.forEachNode(nNode => {
+    _ngraph.forEachNode((nNode) => {
       const node = graph.findNode(nNode.id);
       if (!node) {
         _ngraph.removeNode(nNode.id);
       }
     });
     // add new nodes
-    graph.getNodes().forEach(node => {
+    graph.getNodes().forEach((node) => {
       const nNode = _ngraph.getNode(node.getId());
       if (!nNode) {
         // add new node
@@ -119,13 +119,13 @@ export default class NGraphLayout extends BaseLayout {
     });
 
     // remove non-exist edge
-    _ngraph.forEachLink(nEdge => {
+    _ngraph.forEachLink((nEdge) => {
       const edgeId = nEdge.data;
       if (!graph.findEdge(edgeId)) {
         _ngraph.removeLink(nEdge);
       }
     });
-    graph.getEdges().forEach(edge => {
+    graph.getEdges().forEach((edge) => {
       const nEdge = _ngraph.getLink(
         edge.getSourceNodeId(),
         edge.getTargetNodeId()
@@ -141,12 +141,12 @@ export default class NGraphLayout extends BaseLayout {
     });
   }
 
-  getNodePosition = node => {
+  getNodePosition = (node) => {
     const nNodePos = this._simulator.getNodePosition(node.id);
     return [nNodePos.x, nNodePos.y];
   };
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const sourceNodePos = this._simulator.getNodePosition(
       edge.getSourceNodeId()
     );

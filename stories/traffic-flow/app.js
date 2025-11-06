@@ -33,7 +33,7 @@ const OFFSET_SCALAR = 2;
 const SPEED_RANGE = [10, 30, 60];
 
 const ViewControlPlaceholder = () => <div />;
-const Identical = n => n;
+const Identical = (n) => n;
 export default class TrafficFlow extends Component {
   state = {
     graph: null,
@@ -43,9 +43,7 @@ export default class TrafficFlow extends Component {
 
   componentDidMount() {
     fetchJSONFromS3([DATA_PATH]).then(([json]) => {
-      this._speedScale = scaleLinear()
-        .range([0, 0.5, 1.5])
-        .domain(SPEED_RANGE);
+      this._speedScale = scaleLinear().range([0, 0.5, 1.5]).domain(SPEED_RANGE);
       this._colorScale = scaleLinear()
         .range(['#0f4', '#0af', '#0ff'])
         .domain(SPEED_RANGE);
@@ -67,7 +65,7 @@ export default class TrafficFlow extends Component {
     window.cancelAnimationFrame(this._animation);
   }
 
-  animate = now => {
+  animate = (now) => {
     if (!this._lastAnimation && !!this._lastClock) {
       // initialize
       this._lastAnimation = now;
@@ -125,11 +123,11 @@ export default class TrafficFlow extends Component {
             decorators: [
               {
                 type: EDGE_DECORATOR_TYPE.FLOW,
-                speed: edge => {
+                speed: (edge) => {
                   const edgeFlow = this.getEdgeFlow(flowObject, edge.id);
                   return edgeFlow ? this._speedScale(+edgeFlow.mean) : 0;
                 },
-                color: edge => {
+                color: (edge) => {
                   const edgeFlow = this.getEdgeFlow(flowObject, edge.id);
                   return edgeFlow ? this._colorScale(+edgeFlow.mean) : '#000';
                 },

@@ -9,7 +9,7 @@ const defaultOptions = {
   nBodyStrength: -900,
   nBodyDistanceMin: 100,
   nBodyDistanceMax: 400,
-  getCollisionRadius: d => d.collisionRadius,
+  getCollisionRadius: (d) => d.collisionRadius,
 };
 
 export default class D3ForceLayout extends BaseLayout {
@@ -31,7 +31,7 @@ export default class D3ForceLayout extends BaseLayout {
     this._nodeMap = {};
     this._edgeMap = {};
     // nodes
-    const d3Nodes = graph.getNodes().map(node => {
+    const d3Nodes = graph.getNodes().map((node) => {
       const id = node.id;
       const locked = node.getPropertyValue('locked') || false;
       const x = node.getPropertyValue('x') || 0;
@@ -49,7 +49,7 @@ export default class D3ForceLayout extends BaseLayout {
       return d3Node;
     });
     // edges
-    const d3Edges = graph.getEdges().map(edge => {
+    const d3Edges = graph.getEdges().map((edge) => {
       const d3Edge = {
         id: edge.id,
         source: this._nodeMap[edge.getSourceNodeId()],
@@ -84,7 +84,7 @@ export default class D3ForceLayout extends BaseLayout {
         'edge',
         d3
           .forceLink(g.edges)
-          .id(n => n.id)
+          .id((n) => n.id)
           .strength(this._strength)
       )
       .force(
@@ -104,7 +104,7 @@ export default class D3ForceLayout extends BaseLayout {
       .on('end', this._callbacks.onLayoutDone);
   }
 
-  _strength = d3Edge => {
+  _strength = (d3Edge) => {
     const sourceDegree = this._graph.getDegree(d3Edge.source.id);
     const targetDegree = this._graph.getDegree(d3Edge.target.id);
     return 1 / Math.min(sourceDegree, targetDegree, 1);
@@ -135,7 +135,7 @@ export default class D3ForceLayout extends BaseLayout {
     // update internal layout data
     // nodes
     const newNodeMap = {};
-    const newD3Nodes = graph.getNodes().map(node => {
+    const newD3Nodes = graph.getNodes().map((node) => {
       const id = node.id;
       const locked = node.getPropertyValue('locked') || false;
       const x = node.getPropertyValue('x') || 0;
@@ -155,7 +155,7 @@ export default class D3ForceLayout extends BaseLayout {
     this._d3Graph.nodes = newD3Nodes;
     // edges
     const newEdgeMap = {};
-    const newD3Edges = graph.getEdges().map(edge => {
+    const newD3Edges = graph.getEdges().map((edge) => {
       const oldD3Edge = this._edgeMap[edge.id];
       const newD3Edge = oldD3Edge
         ? oldD3Edge
@@ -171,7 +171,7 @@ export default class D3ForceLayout extends BaseLayout {
     this._d3Graph.edges = newD3Edges;
   }
 
-  getNodePosition = node => {
+  getNodePosition = (node) => {
     const d3Node = this._nodeMap[node.id];
     if (d3Node) {
       return [d3Node.x, d3Node.y];
@@ -179,7 +179,7 @@ export default class D3ForceLayout extends BaseLayout {
     return [0, 0];
   };
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const d3Edge = this._edgeMap[edge.id];
     const sourcePosition = d3Edge && d3Edge.source;
     const targetPosition = d3Edge && d3Edge.target;
@@ -209,7 +209,7 @@ export default class D3ForceLayout extends BaseLayout {
     this._callbacks.onLayoutDone();
   };
 
-  unlockNodePosition = node => {
+  unlockNodePosition = (node) => {
     const d3Node = this._nodeMap[node.id];
     d3Node.fx = null;
     d3Node.fy = null;

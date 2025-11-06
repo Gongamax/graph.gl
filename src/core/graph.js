@@ -149,7 +149,7 @@ export default class Graph {
    * @param  {Edge[]} edges - a list of edges to be added.
    */
   batchAddEdges(edges) {
-    edges.forEach(edge => this.addEdge(edge));
+    edges.forEach((edge) => this.addEdge(edge));
     this._touchLastUpdate();
   }
 
@@ -164,7 +164,7 @@ export default class Graph {
       return;
     }
     // remove all edges connect to this node from map
-    node.getConnectedEdges().forEach(e => {
+    node.getConnectedEdges().forEach((e) => {
       delete this._edgeMap[e.getId()];
     });
     // remove the node from map
@@ -246,7 +246,7 @@ export default class Graph {
     }
     return node
       .getSiblingIds()
-      .map(siblingNodeId => this.findNode(siblingNodeId));
+      .map((siblingNodeId) => this.findNode(siblingNodeId));
   }
 
   /**

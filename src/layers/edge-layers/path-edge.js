@@ -18,12 +18,9 @@ export default class PathEdge extends CompositeLayer {
         this.getSubLayerProps({
           id: '__line-layer',
           data,
-          getPath: e => {
-            const {
-              sourcePosition,
-              targetPosition,
-              controlPoints,
-            } = getLayoutInfo(e);
+          getPath: (e) => {
+            const {sourcePosition, targetPosition, controlPoints} =
+              getLayoutInfo(e);
             return [sourcePosition, ...controlPoints, targetPosition];
           },
           updateTriggers: {

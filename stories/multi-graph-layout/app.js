@@ -49,13 +49,13 @@ export default class MultiGraphExample extends Component {
           },
           {
             type: NODE_TYPE.CIRCLE,
-            radius: node => (node.getPropertyValue('star') ? 6 : 0),
+            radius: (node) => (node.getPropertyValue('star') ? 6 : 0),
             fill: [255, 255, 0],
             offset: [18, -18],
           },
           this.props.showNodeLabel && {
             type: NODE_TYPE.LABEL,
-            text: node => node.getId(),
+            text: (node) => node.getId(),
             color: Color(this.props.nodeLabelColor).array(),
             fontSize: this.props.nodeLabelSize,
           },
@@ -66,7 +66,7 @@ export default class MultiGraphExample extends Component {
           decorators: [
             this.props.showEdgeLabel && {
               type: EDGE_DECORATOR_TYPE.LABEL,
-              text: edge => edge.getPropertyValue('type'),
+              text: (edge) => edge.getPropertyValue('type'),
               color: Color(this.props.edgeLabelColor).array(),
               fontSize: this.props.edgeLabelSize,
             },

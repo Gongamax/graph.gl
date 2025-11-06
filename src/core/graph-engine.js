@@ -25,9 +25,9 @@ export default class GraphEngine {
 
   getLayout = () => this._layout;
 
-  getNodePosition = node => this._layout.getNodePosition(node);
+  getNodePosition = (node) => this._layout.getNodePosition(node);
 
-  getEdgePosition = edge => this._layout.getEdgePosition(edge);
+  getEdgePosition = (edge) => this._layout.getEdgePosition(edge);
 
   getLayoutLastUpdate = () => this._lastUpdate;
 
@@ -39,7 +39,7 @@ export default class GraphEngine {
     this._layout.lockNodePosition(node, x, y);
   };
 
-  unlockNodePosition = node => {
+  unlockNodePosition = (node) => {
     this._layout.unlockNodePosition(node);
   };
 
@@ -54,7 +54,7 @@ export default class GraphEngine {
 
   /** Event callbacks */
 
-  registerCallbacks = callbacks => {
+  registerCallbacks = (callbacks) => {
     this._callbacks = callbacks;
   };
 

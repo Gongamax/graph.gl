@@ -48,7 +48,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
     this.updateGraph(graph);
   }
 
-  _strength = d3Edge => {
+  _strength = (d3Edge) => {
     if (d3Edge.isVirtual) {
       return 1 / d3Edge.edgeCount;
     }
@@ -62,12 +62,8 @@ export default class ForceMultiGraphLayout extends BaseLayout {
       this._simulator.on('tick', null).on('end', null);
       this._simulator = null;
     }
-    const {
-      alpha,
-      nBodyStrength,
-      nBodyDistanceMin,
-      nBodyDistanceMax,
-    } = this._options;
+    const {alpha, nBodyStrength, nBodyDistanceMin, nBodyDistanceMax} =
+      this._options;
 
     const g = this._d3Graph;
     this._simulator = d3
@@ -76,7 +72,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
         'edge',
         d3
           .forceLink(g.edges)
-          .id(n => n.id)
+          .id((n) => n.id)
           .strength(this._strength)
       )
       .force(
@@ -113,7 +109,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
 
     // nodes
     const newNodeMap = {};
-    const newD3Nodes = graph.getNodes().map(node => {
+    const newD3Nodes = graph.getNodes().map((node) => {
       const oldD3Node = this._nodeMap[node.id];
       const newD3Node = oldD3Node ? oldD3Node : {id: node.id};
       newNodeMap[node.id] = newD3Node;
@@ -142,7 +138,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
     const newD3Edges = [];
     const newEdgeMap = {};
 
-    Object.keys(nodePairs).forEach(pairId => {
+    Object.keys(nodePairs).forEach((pairId) => {
       const betweenEdges = nodePairs[pairId];
       const firstEdge = betweenEdges[0];
       if (betweenEdges.length === 1) {
@@ -190,7 +186,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
     this._d3Graph.edges = newD3Edges;
   }
 
-  getNodePosition = node => {
+  getNodePosition = (node) => {
     const d3Node = this._nodeMap[node.id];
     if (d3Node) {
       return [d3Node.x, d3Node.y];
@@ -199,7 +195,7 @@ export default class ForceMultiGraphLayout extends BaseLayout {
     return [0, 0];
   };
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const d3Edge = this._edgeMap[edge.id];
     if (d3Edge) {
       if (!d3Edge.isVirtual) {

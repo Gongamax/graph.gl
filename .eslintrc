@@ -1,4 +1,13 @@
 {
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": true,
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "plugin:react/recommended",
     "plugin:jest/recommended",
@@ -6,11 +15,13 @@
   ],
   "env": {
     "jest": true,
-    "node": true
+    "node": true,
+    "es2022": true,
+    "browser": true
   },
   "settings": {
     "react": {
-      "version" : "16.6.1"
+      "version": "detect"
     }
   },
   "plugins": [

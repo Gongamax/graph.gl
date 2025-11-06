@@ -55,7 +55,7 @@ const EDGE_DECORATOR_LAYER_MAP = {
 };
 
 const SHARED_LAYER_PROPS = {
-  coordinateSystem: COORDINATE_SYSTEM.IDENTITY,
+  coordinateSystem: COORDINATE_SYSTEM.CARTESIAN,
   parameters: {
     depthTest: false,
   },

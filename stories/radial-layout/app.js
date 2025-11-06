@@ -28,8 +28,8 @@ export default class BasicRadialExample extends Component {
       }, {});
       const graph = JSONLoader({
         json: sampleGraph,
-        nodeParser: node => ({id: node.name}),
-        edgeParser: edge => ({
+        nodeParser: (node) => ({id: node.name}),
+        edgeParser: (edge) => ({
           id: `${edge.source}-${edge.target}`,
           sourceId: nodeIndexMap[edge.source],
           targetId: nodeIndexMap[edge.target],
@@ -38,13 +38,13 @@ export default class BasicRadialExample extends Component {
       });
       this.setState({graph, tree: sampleGraph.tree});
       // parse attributes
-      const groupExtent = extent(nodes, n => n.group);
+      const groupExtent = extent(nodes, (n) => n.group);
       this._nodeColorScale = scaleOrdinal(schemeAccent).domain(groupExtent);
     });
   }
 
   // node accessors
-  getNodeColor = node => {
+  getNodeColor = (node) => {
     const hex = this._nodeColorScale(node.getPropertyValue('group'));
     return Color(hex).array();
   };
@@ -71,7 +71,7 @@ export default class BasicRadialExample extends Component {
           },
           {
             type: NODE_TYPE.LABEL,
-            text: node => node.getPropertyValue('name'),
+            text: (node) => node.getPropertyValue('name'),
             color: DEFAULT_NODE_LABEL_COLOR,
             textAnchor: 'start',
             fontSize: 8,

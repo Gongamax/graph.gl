@@ -61,7 +61,7 @@ function getOffset(value) {
   return value.map(getNumber);
 }
 
-const IDENTITY = x => x;
+const IDENTITY = (x) => x;
 const PROPERTY_FORMATTERS = {
   opacity: getNumber,
   zIndex: getNumber,
@@ -133,7 +133,7 @@ function generateAccessor(key, value) {
     return res;
   }, {});
 
-  return node => {
+  return (node) => {
     const statefulValue = valueMap[node.state];
     if (!node.state || typeof statefulValue === 'undefined') {
       return valueMap['default'] || DEFAULT_STYLES[key];
@@ -182,7 +182,7 @@ export default class StyleProperty {
       // the corresponding formatter again.
       // Ex: colorAccessor might return '#f00', which needs to
       // be formated as [255, 0, 0];
-      this._value = d => formatter(value(d));
+      this._value = (d) => formatter(value(d));
       this._valueType = VALUE_TYPE.ACCESSOR;
       this._updateTrigger = value;
     }

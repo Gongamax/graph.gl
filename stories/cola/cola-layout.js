@@ -33,7 +33,7 @@ export default class ColaLayout extends BaseLayout {
     }
 
     // nodes
-    const colaNodes = graph.getNodes().map(node => {
+    const colaNodes = graph.getNodes().map((node) => {
       const colaNode = {
         id: node.getId(),
         x: 0,
@@ -43,11 +43,11 @@ export default class ColaLayout extends BaseLayout {
       return colaNode;
     });
     // edges
-    const colaEdges = graph.getEdges().map(edge => {
+    const colaEdges = graph.getEdges().map((edge) => {
       const colaEdge = {
         id: edge.getId(),
-        source: colaNodes.findIndex(n => n.id === edge.getSourceNodeId()),
-        target: colaNodes.findIndex(n => n.id === edge.getTargetNodeId()),
+        source: colaNodes.findIndex((n) => n.id === edge.getSourceNodeId()),
+        target: colaNodes.findIndex((n) => n.id === edge.getTargetNodeId()),
       };
       this._edgeMap[edge.getId()] = colaEdge;
       return colaEdge;
@@ -104,7 +104,7 @@ export default class ColaLayout extends BaseLayout {
     this._graph = graph;
     // nodes
     const newNodeMap = {};
-    const newColaNodes = graph.getNodes().map(node => {
+    const newColaNodes = graph.getNodes().map((node) => {
       const oldColaNode = this._nodeMap[node.getId()];
       const newColaNode = oldColaNode
         ? oldColaNode
@@ -121,14 +121,14 @@ export default class ColaLayout extends BaseLayout {
     this._colaGraph.nodes = newColaNodes;
     // edges
     const newEdgeMap = {};
-    const newColaEdges = graph.getEdges().map(edge => {
+    const newColaEdges = graph.getEdges().map((edge) => {
       const newColaEdge = {
         id: edge.getId(),
         source: this._colaGraph.nodes.findIndex(
-          n => n.id === edge.getSourceNodeId()
+          (n) => n.id === edge.getSourceNodeId()
         ),
         target: this._colaGraph.nodes.findIndex(
-          n => n.id === edge.getTargetNodeId()
+          (n) => n.id === edge.getTargetNodeId()
         ),
       };
       newEdgeMap[edge.getId()] = newColaEdge;
@@ -138,7 +138,7 @@ export default class ColaLayout extends BaseLayout {
     this._colaGraph.edges = newColaEdges;
   }
 
-  getNodePosition = node => {
+  getNodePosition = (node) => {
     const colaNode = this._nodeMap[node.getId()];
     if (colaNode) {
       return [colaNode.x, colaNode.y];
@@ -146,7 +146,7 @@ export default class ColaLayout extends BaseLayout {
     return [0, 0];
   };
 
-  getEdgePosition = edge => {
+  getEdgePosition = (edge) => {
     const colaEdge = this._edgeMap[edge.getId()];
     const edgeSource = colaEdge.source;
     const edgeTarget = colaEdge.target;

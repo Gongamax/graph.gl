@@ -18,8 +18,8 @@ export default class FlowLayer extends CompositeLayer {
           id: '__flow-layer',
           data,
           ...stylesheet.getDeckGLAccessors(),
-          getSourcePosition: e => getLayoutInfo(e).sourcePosition,
-          getTargetPosition: e => getLayoutInfo(e).targetPosition,
+          getSourcePosition: (e) => getLayoutInfo(e).sourcePosition,
+          getTargetPosition: (e) => getLayoutInfo(e).targetPosition,
           parameters: {
             depthTest: false,
           },

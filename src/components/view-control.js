@@ -25,9 +25,9 @@ export const NavigationButtonContainer = styled.div`
 export const NavigationButton = styled.div`
   color: #848484;
   cursor: pointer;
-  left: ${props => props.left};
+  left: ${(props) => props.left};
   position: absolute;
-  top: ${props => props.top};
+  top: ${(props) => props.top};
 
   &:hover {
     color: #00ade6;
@@ -107,7 +107,7 @@ export default class ViewControl extends PureComponent {
   // zoom actions
   zoomIn = () => this.props.zoomBy(this.props.deltaZoom);
   zoomOut = () => this.props.zoomBy(-1 * this.props.deltaZoom);
-  onChangeZoomLevel = evt => {
+  onChangeZoomLevel = (evt) => {
     const delta = evt.target.value - this.props.zoomLevel;
     this.props.zoomBy(delta);
   };
@@ -124,7 +124,7 @@ export default class ViewControl extends PureComponent {
     return (
       <ViewControlWrapper>
         <NavigationButtonContainer>
-          {buttons.map(b => (
+          {buttons.map((b) => (
             <NavigationButton
               key={b.content}
               top={`${b.top}px`}

@@ -36,7 +36,7 @@ class Root extends Component {
               value={this.state.selectedDataset}
               onChange={this.handleChangeGraph}
             >
-              {Object.keys(SAMPLE_GRAPH_DATASETS).map(data => (
+              {Object.keys(SAMPLE_GRAPH_DATASETS).map((data) => (
                 <option key={data} value={data}>
                   {data}
                 </option>

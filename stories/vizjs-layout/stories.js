@@ -29,7 +29,7 @@ stories.add(
     );
     const WithDatasetGraphGL = SampleDatasetSelectorHOC(
       VizJSExample,
-      data => data
+      (data) => data
     );
     return (
       <WithDatasetGraphGL

@@ -19,11 +19,11 @@ export default class VizJSExample extends Component {
     }
   }
 
-  processData = data => {
+  processData = (data) => {
     const graph = JSONLoader({
       json: data,
-      nodeParser: node => ({id: node.id}),
-      edgeParser: edge => ({
+      nodeParser: (node) => ({id: node.id}),
+      edgeParser: (edge) => ({
         id: edge.id,
         sourceId: edge.sourceId,
         targetId: edge.targetId,

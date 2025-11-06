@@ -14,11 +14,11 @@ class GraphBuilder extends React.Component {
     }
   }
 
-  processData = data => {
+  processData = (data) => {
     const graph = JSONLoader({
       json: data,
-      nodeParser: node => ({id: node.id}),
-      edgeParser: edge => ({
+      nodeParser: (node) => ({id: node.id}),
+      edgeParser: (edge) => ({
         id: Math.random() * 10000,
         sourceId: edge.sourceId,
         targetId: edge.targetId,
@@ -52,7 +52,7 @@ class GraphBuilder extends React.Component {
           },
           {
             type: NODE_TYPE.LABEL,
-            text: node => String(node.id).substring(0, 6),
+            text: (node) => String(node.id).substring(0, 6),
             color: '#000000',
             fontSize: 15,
             offset: [0, 12],

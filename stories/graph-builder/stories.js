@@ -9,7 +9,10 @@ const stories = storiesOf('Demo', module);
 // start to add examples
 import BasicDoc from './README.md';
 import GraphBuilder from './app';
-const WithDatasetGraphGL = SampleDatasetSelectorHOC(GraphBuilder, data => data);
+const WithDatasetGraphGL = SampleDatasetSelectorHOC(
+  GraphBuilder,
+  (data) => data
+);
 
 stories.add(
   'GraphBuilder',
