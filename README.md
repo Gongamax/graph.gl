@@ -1,14 +1,10 @@
 # Graph.gl# Graph.gl<p align="right">
 
-
-
-[![CI](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml/badge.svg)](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml)  <a href="https://travis-ci.com/uber/graph.gl">
+[![CI](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml/badge.svg)](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml) <a href="https://travis-ci.com/uber/graph.gl">
 
 [![npm version](https://badge.fury.io/js/@gongamax%2Fgraph.gl.svg)](https://www.npmjs.com/package/@gongamax/graph.gl)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![CI](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml/badge.svg)](https://github.com/Gongamax/graph.gl/actions/workflows/ci.yml) <img src="https://travis-ci.com/uber/graph.gl.svg" alt="build" />
-
-
 
 <p align="center">[![npm version](https://badge.fury.io/js/@gongamax%2Fgraph.gl.svg)](https://www.npmjs.com/package/@gongamax/graph.gl) </a>
 
@@ -16,19 +12,11 @@
 
 </p>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fuber%2Fgraph.gl?ref=badge_shield" alt="FOSSA Status">
 
+**WebGL2-Powered Visualization Components for Graph Visualization - Modernized for 2025** <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fuber%2Fgraph.gl.svg?type=shield"/>
 
-
-**WebGL2-Powered Visualization Components for Graph Visualization - Modernized for 2025**    <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fuber%2Fgraph.gl.svg?type=shield"/>
-
-
-
-A React component library for visualizing large graphs with customizable layouts and rendering. Originally created by Uber, now modernized and maintained for phylogenetic tree visualization and other graph-based applications.<p align="center">  </a>
-
-
+A React component library for visualizing large graphs with customizable layouts and rendering. Originally created by Uber, now modernized and maintained for phylogenetic tree visualization and other graph-based applications.<p align="center"> </a>
 
 ## ✨ Features<img src="https://i.imgur.com/BF9aOEu.png" height="400" /></p>
-
-
 
 - 🚀 **High Performance**: WebGL-powered rendering via deck.gl 9</p>
 
@@ -84,7 +72,7 @@ Or with yarn:
 
 - 🎯 **Interactive**: Built-in support for dragging, clicking, and viewport manipulationUber started to build its own knowledge graph since two years ago, and uGraph, the knowledge graph exploration tool was created since then. With the capability of querying large graph data and different ways to explore graph, it’s getting more urgent to produce more produce more different graph visualization applications.
 
-```bash
+`````bash
 
 yarn add @gongamax/graph.gl- 📦 **TypeScript Ready**: Full type definitions included (coming soon)To quickly build a graph visualization, we start to extract the code from uGraph and build a reusable React component for graph visualization, Graph.gl, which equipped advanced Deck.gl rendering capability and several useful graph algorithms and operations. Although there are a great number of commercial graph visualization tools, only a few of them allow users to extend the layout and customization. With Graph.gl, developers are allowed to create graph visualization with minimum efforts while having the capability to override anything they want in the library.
 
@@ -186,13 +174,9 @@ yarn add @luma.gl/core@^9.0.0 @luma.gl/engine@^9.0.0 @loaders.gl/core@^4.0.0 - P
 
 export default MyGraph;
 
-```````
-
-
+`````
 
 ## 🎯 Use Cases## Get Started
-
-
 
 - **Phylogenetic Tree Visualization**: Display evolutionary relationships## 📖 Quick Start```js
 
@@ -204,33 +188,23 @@ export default MyGraph;
 
 - **Dependency Graphs**: Understand project dependencies`````jsx JSONLoader,
 
+## 📚 Documentationimport React from 'react'; NODE_TYPE,
 
-
-## 📚 Documentationimport React from 'react';  NODE_TYPE,
-
-
-
-- [API Reference](./docs/README.md)import GraphGL, {  D3ForceLayout
+- [API Reference](./docs/README.md)import GraphGL, { D3ForceLayout
 
 - [Graph API](./docs/api-reference/graph.md)
 
-- [Layouts](./docs/api-reference/layout.md)  JSONLoader,} from 'graph.gl';
+- [Layouts](./docs/api-reference/layout.md) JSONLoader,} from 'graph.gl';
 
 - [Node Styles](./docs/api-reference/node-style.md)
 
-- [Edge Styles](./docs/api-reference/edge-style.md)  NODE_TYPE,
+- [Edge Styles](./docs/api-reference/edge-style.md) NODE_TYPE,
 
+## 🔧 Development D3ForceLayoutconst App = ({data}) => {
 
+### Setup} from '@gongamax/graph.gl'; const graph = JSONLoader({
 
-## 🔧 Development  D3ForceLayoutconst App = ({data}) => {
-
-
-
-### Setup} from '@gongamax/graph.gl';  const graph = JSONLoader({
-
-
-
-```bash    json: data,
+````bash json: data,
 
 # Clone the repository
 
@@ -288,7 +262,7 @@ yarn cover
 
 yarn lint    <GraphGL        {
 
-```
+````
 
       graph={graph}          type: NODE_TYPE.CIRCLE,
 
@@ -302,27 +276,25 @@ This is a major modernization release bringing graph.gl from 2019 to 2025 standa
 
 ### Updated Dependencies
 
-- ⚛️ React 16 → 18        {          opacity: 1,
+- ⚛️ React 16 → 18 { opacity: 1,
 
 - 📊 D3 v5 → v7
 
-- 🎮 deck.gl 7 → 9          type: NODE_TYPE.CIRCLE,        },
+- 🎮 deck.gl 7 → 9 type: NODE_TYPE.CIRCLE, },
 
 - 🧪 Jest 23 → 29
 
-- 💅 styled-components 4 → 6          radius: 10,      ]}
+- 💅 styled-components 4 → 6 radius: 10, ]}
 
-
-
-### Improvements          fill: 'blue',      edgeStyle={{
+### Improvements fill: 'blue', edgeStyle={{
 
 - ✅ Modern build tooling (Babel 7.24, ESLint 8)
 
-- ✅ All tests passing (30 tests, 12 suites)          opacity: 1,        stroke: 'black',
+- ✅ All tests passing (30 tests, 12 suites) opacity: 1, stroke: 'black',
 
 - ✅ Production build verified
 
-- ✅ ES modules support        },        strokeWidth: 2,
+- ✅ ES modules support }, strokeWidth: 2,
 
 - ✅ Automatic JSX runtime
 
@@ -342,27 +314,25 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
 
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)      }}}
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`) }}}
 
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 
-4. Push to the branch (`git push origin feature/AmazingFeature`)      enableDragging````
+4. Push to the branch (`git push origin feature/AmazingFeature`) enableDragging````
 
 5. Open a Pull Request
 
-    />
+   />
 
 ## 📄 License
 
-  );
+);
 
 MIT © [Gonçalo Frutuoso](https://github.com/Gongamax)
 
 };## Setup Dev Environment
 
 Originally created by Uber Technologies, Inc.
-
-
 
 ## 🙏 Credits
 
@@ -376,26 +346,15 @@ export default MyGraph;#### Clone the repo:
 
 - Layout algorithms powered by [D3](https://d3js.org)```
 
-
-
 ## 📬 Contact## 🎯 Use Casesgit clone git@github.com:uber/graph.gl.git
-
-
 
 Gonçalo Frutuoso - goncalofrutuoso@gmail.com```
 
-
-
 Project Link: [https://github.com/Gongamax/graph.gl](https://github.com/Gongamax/graph.gl)- **Phylogenetic Tree Visualization**: Display evolutionary relationships
-
-
 
 ---- **Knowledge Graphs**: Explore interconnected data#### Install yarn
 
-
-
 <p align="center">Made with ❤️ for the graph visualization community</p>- **Network Diagrams**: Visualize complex systems
-
 
 - **Social Networks**: Map relationships and connections```
 
