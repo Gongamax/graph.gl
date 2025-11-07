@@ -18,7 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import {Buffer, Transform} from '@luma.gl/core';
+import {Buffer} from '@luma.gl/core';
+import {Transform} from '@luma.gl/engine';
 import {LineLayer} from '@deck.gl/layers';
 import {window} from 'global';
 

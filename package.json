@@ -64,10 +64,6 @@
     "url": "https://github.com/Gongamax/graph.gl/issues"
   },
   "homepage": "https://github.com/Gongamax/graph.gl#readme",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
   },
