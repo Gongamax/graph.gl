@@ -18,14 +18,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import {Buffer} from '@luma.gl/core';
-import {Transform} from '@luma.gl/engine';
+// NOTE: Transform API was removed in luma.gl 9.x and replaced with BufferTransform
+// The transform feedback feature is disabled for now
 import {LineLayer} from '@deck.gl/layers';
 import {window} from 'global';
 
 import vs from './flow-path-layer-vertex.glsl';
 import fs from './flow-path-layer-fragment.glsl';
-import tfvs from './flow-path-layer-vertex-tf.glsl';
+// import tfvs from './flow-path-layer-vertex-tf.glsl';
 
 const defaultProps = {
   ...LineLayer.defaultProps,
@@ -111,30 +111,10 @@ export default class FlowPathLayer extends LineLayer {
   }
 
   setupTransformFeedback() {
-    const {gl} = this.context;
-    const elementCount = this.props.data && this.props.data.length;
-    if (elementCount) {
-      const instanceOffsets = new Float32Array(elementCount);
-      const instanceSpeeds = new Float32Array(elementCount);
-      const offsetBuffer = new Buffer(gl, instanceOffsets);
-      const speedsBuffer = new Buffer(gl, instanceSpeeds);
-
-      this.setState({
-        speedsBuffer,
-        transform: new Transform(gl, {
-          id: 'transform-offset',
-          vs: tfvs,
-          elementCount,
-          sourceBuffers: {
-            a_offset: offsetBuffer,
-            a_speed: speedsBuffer,
-          },
-          feedbackMap: {
-            a_offset: 'v_offset',
-          },
-        }),
-      });
-    }
+    // NOTE: Transform feedback feature is disabled in luma.gl 9.x
+    // Transform API was removed and replaced with BufferTransform which has a different API
+    // This would need significant refactoring to work with the new API
+    // For now, the layer will work but without animation support
   }
 
   draw({uniforms}) {
