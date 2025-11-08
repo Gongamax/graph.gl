@@ -68,9 +68,8 @@ export default class GraphLayer extends CompositeLayer {
 
   constructor(props) {
     super(props);
-    props.engine.registerCallbacks({
-      onLayoutChange: () => this.forceUpdate(),
-    });
+    // Note: onLayoutChange callback is registered on the parent component (GraphGL)
+    // via props.engine.registerCallbacks() in the GraphGL constructor
   }
 
   initializeState() {
@@ -90,13 +89,6 @@ export default class GraphLayer extends CompositeLayer {
 
   finalize() {
     this.props.engine.unregisterCallbacks();
-  }
-
-  forceUpdate() {
-    if (this.context && this.context.layerManager) {
-      this.setLayerNeedsUpdate();
-      this.setChangeFlags({dataChanged: true});
-    }
   }
 
   createNodeLayers() {

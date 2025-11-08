@@ -151,7 +151,7 @@ export default class GraphGL extends PureComponent {
     this._setProps(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this._setProps(nextProps);
   }
 

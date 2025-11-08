@@ -25,9 +25,9 @@ export const NavigationButtonContainer = styled.div`
 export const NavigationButton = styled.div`
   color: #848484;
   cursor: pointer;
-  left: ${(props) => props.left};
+  left: ${(props) => props.$left};
   position: absolute;
-  top: ${(props) => props.top};
+  top: ${(props) => props.$top};
 
   &:hover {
     color: #00ade6;
@@ -127,15 +127,15 @@ export default class ViewControl extends PureComponent {
           {buttons.map((b) => (
             <NavigationButton
               key={b.content}
-              top={`${b.top}px`}
-              left={`${b.left}px`}
+              $top={`${b.top}px`}
+              $left={`${b.left}px`}
             >
               <LongPressButton onClick={b.onClick}>{b.content}</LongPressButton>
             </NavigationButton>
           ))}
           <NavigationButton
-            top={'14px'}
-            left={'19px'}
+            $top={'14px'}
+            $left={'19px'}
             onClick={this.props.fitBounds}
           >
             {'¤'}
