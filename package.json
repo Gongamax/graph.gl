@@ -21,6 +21,17 @@
     "./dist/index.js": "./dist/browser.es5.js",
     "./dist/index.es.js": "./dist/browser.es5.es.js"
   },
+  "exports": {
+    ".": {
+      "browser": {
+        "import": "./dist/browser.es2017.es.js",
+        "require": "./dist/browser.es5.js"
+      },
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "es2015": {
     "./dist/browser.es5.es.js": "./dist/browser.es2015.es.js"
   },
