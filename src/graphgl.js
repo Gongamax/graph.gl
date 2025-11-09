@@ -141,6 +141,7 @@ export default class GraphGL extends PureComponent {
       ...INITIAL_VIEW_STATE,
       ...this.props.initialViewState,
     },
+    _propsVersion: 0, // Track prop changes for engine updates
   };
 
   constructor(props) {
@@ -151,8 +152,22 @@ export default class GraphGL extends PureComponent {
     this._setProps(this.props);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this._setProps(nextProps);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // This will be called on both mount and update
+    // Return state updates or null if no update needed
+    return {
+      _propsVersion: (prevState._propsVersion || 0) + 1,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    // After state updates from getDerivedStateFromProps, check if props changed
+    if (
+      prevProps.graph !== this.props.graph ||
+      prevProps.layout !== this.props.layout
+    ) {
+      this._setProps(this.props);
+    }
   }
 
   _setProps = (props) => {

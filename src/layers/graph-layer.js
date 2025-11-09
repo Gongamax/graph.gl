@@ -73,9 +73,10 @@ export default class GraphLayer extends CompositeLayer {
   }
 
   initializeState() {
-    const interactionManager = new InteractionManager(this.props, () =>
-      this.forceUpdate()
-    );
+    const interactionManager = new InteractionManager(this.props, () => {
+      // In deck.gl v9, trigger a layer update by invalidating state
+      this.setState({interactionUpdateTrigger: Date.now()});
+    });
     this.state = {interactionManager};
   }
 
