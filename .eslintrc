@@ -1,7 +1,10 @@
 {
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "requireConfigFile": true,
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react", "@babel/preset-env"]
+    },
     "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
@@ -10,8 +13,7 @@
   },
   "extends": [
     "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "eslint-config-uber-universal-stage-3"
+    "plugin:jest/recommended"
   ],
   "env": {
     "jest": true,

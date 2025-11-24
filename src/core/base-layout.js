@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal';
+import isEqual from 'lodash/isEqual';
 import {EDGE_TYPE} from './constants';
 
 // All the layout classes are extended from this base layout class.
